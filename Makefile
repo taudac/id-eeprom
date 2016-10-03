@@ -8,7 +8,7 @@ taudac.dtbo: taudac-overlay.dts
 	dtc -@ -I dts -O dtb -o taudac.dtbo taudac-overlay.dts
 
 taudac.eep: taudac-eeprom.txt taudac.dtbo
-	@echo "building EEPROM file..."
+	@echo "Building EEPROM file..."
 	$(EEPMAKE) taudac-eeprom.txt taudac.eep taudac.dtbo
 
 clean:
