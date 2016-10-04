@@ -14,7 +14,7 @@ taudac.eep: taudac-eeprom.txt taudac.dtbo
 
 flash: taudac.eep
 	@echo "Writing image to EEPROM..."
-	sudo $(EEPFLASH) --write --file=taudac.eep --type=24c32
+	$(EEPFLASH) --write --file=taudac.eep --type=24c32
 
 clean:
 	rm -f *.dtbo
