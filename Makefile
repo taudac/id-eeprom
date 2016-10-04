@@ -4,6 +4,13 @@ EEPFLASH=hats/eepromutils/eepflash.sh
 
 all: taudac.eep
 
+blank.eep:
+	dd if=/dev/zero ibs=1k count=4 of=blank.eep
+
+erase: blank.eep
+	@echo "Clearing EEPROM..."
+	$(EEPFLASH) --write --file=blank.eep --type=24c32
+
 taudac.dtbo: taudac-overlay.dts
 	@echo "Building DT overlay..."
 	$(DTC) -@ -H epapr -I dts -O dtb -o taudac.dtbo taudac-overlay.dts
