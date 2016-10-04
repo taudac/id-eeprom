@@ -6,7 +6,7 @@ all: taudac.eep
 
 taudac.dtbo: taudac-overlay.dts
 	@echo "Building DT overlay..."
-	$(DTC) -@ -I dts -O dtb -o taudac.dtbo taudac-overlay.dts
+	$(DTC) -@ -H epapr -I dts -O dtb -o taudac.dtbo taudac-overlay.dts
 
 taudac.eep: taudac-eeprom.txt taudac.dtbo
 	@echo "Building EEPROM image..."
