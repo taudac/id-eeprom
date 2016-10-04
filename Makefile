@@ -1,3 +1,4 @@
+DTC=/lib/modules/$(shell uname -r)/build/scripts/dtc/dtc
 EEPMAKE=hats/eepromutils/eepmake
 EEPFLASH=hats/eepromutils/eepflash.sh
 
@@ -5,7 +6,7 @@ all: taudac.eep
 
 taudac.dtbo: taudac-overlay.dts
 	@echo "Building DT overlay..."
-	dtc -@ -I dts -O dtb -o taudac.dtbo taudac-overlay.dts
+	$(DTC) -@ -I dts -O dtb -o taudac.dtbo taudac-overlay.dts
 
 taudac.eep: taudac-eeprom.txt taudac.dtbo
 	@echo "Building EEPROM image..."
