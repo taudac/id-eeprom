@@ -15,11 +15,24 @@ taudac.eep: taudac-eeprom.txt taudac.dtbo
 	@echo "Building EEPROM image..."
 	$(EEPMAKE) taudac-eeprom.txt taudac.eep taudac.dtbo
 
-erase: blank.eep
+eeprom.unlocked:
+	@echo "Unlocking EEPROM..."
+	echo '25' > /sys/class/gpio/export
+	@sleep 0.1
+	echo 'out' > /sys/class/gpio/gpio25/direction
+	echo '0' > /sys/class/gpio/gpio25/value
+	@date > eeprom.unlocked
+
+erase flash: %: eeprom.unlocked do-%
+	@echo "Locking EEPROM..."
+	echo '25' > /sys/class/gpio/unexport
+	@rm eeprom.unlocked
+
+do-erase: blank.eep
 	@echo "Erasing EEPROM..."
 	$(EEPFLASH) --write --file=blank.eep --type=24c32
 
-flash: taudac.eep
+do-flash: taudac.eep
 	@echo "Programming EEPROM..."
 	$(EEPFLASH) --write --file=taudac.eep --type=24c32
 
