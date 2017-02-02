@@ -149,20 +149,13 @@
 			taudac,i2s-controller = <&i2s>;
 			taudac,codecs = <&wm8741_left>, <&wm8741_right>;
 
-			clocks      = <&osc24>,
-			<&osc22>,
-			<&mux_mclk>,
-			<&gate_mclk>,
-			<&si5351 5>,
-			<&si5351 3>,
-			<&si5351 0>;
-			clock-names = "mclk-24M",
-			"mclk-22M",
-			"mux-mclk",
-			"gate-mclk",
-			"bclk-dacr",
-			"bclk-dacl",
-			"bclk-cpu";
+			clocks = <&osc24>, <&osc22>,
+			         <&mux_mclk>, <&gate_mclk>,
+			         <&si5351 5>, <&si5351 3>, <&si5351 0>;
+
+			clock-names = "mclk-24M", "mclk-22M",
+			         "mux-mclk", "gate-mclk",
+			         "bclk-dacr", "bclk-dacl", "bclk-cpu";
 
 			status = "okay";
 		};
