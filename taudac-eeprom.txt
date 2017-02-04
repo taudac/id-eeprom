@@ -15,10 +15,10 @@ vendor "Sergej Sawazki"
 product "TauDAC-DM101"
 
 # drive strength, 0=default, 1-8=2,4,6,8,10,12,14,16mA, 9-15=reserved
-gpio_drive 0
+gpio_drive 1
 
 # 0=default, 1=slew rate limiting, 2=no slew limiting, 3=reserved
-gpio_slew 0
+gpio_slew 1
 
 # 0=default, 1=hysteresis disabled, 2=hysteresis enabled, 3=reserved
 gpio_hysteresis 0
