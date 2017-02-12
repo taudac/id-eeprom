@@ -91,73 +91,78 @@
 				reg = <0x60>;
 				clocks = <&xtal>, <&gate_mclk>;
 				clock-names = "xtal", "clkin";
-				silabs,pll-source = <0 0>, <1 1>;
+				silabs,pll-source = <SI5351_PLL_A SI5351_PLL_SRC_XTAL>,
+				                    <SI5351_PLL_B SI5351_PLL_SRC_CLKIN>;
 				status = "okay";
 
 				/* BCLK CPU */
 				clkout0 {
 					reg = <0>;
-					silabs,disable-state = <2>;
-					silabs,clock-source = <0>;
-					silabs,multisynth-source = <1>;
-					silabs,drive-strength = <2>;
+					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
+					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
+					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
+					silabs,drive-strength = <SI5351_DRIVE_2MA>;
 				};
 
 				/* LRCLK CPU */
 				clkout1 {
 					reg = <1>;
-					silabs,disable-state = <2>;
-					silabs,clock-source = <0>;
-					silabs,multisynth-source = <1>;
-					silabs,drive-strength = <2>;
+					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
+					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
+					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
+					silabs,drive-strength = <SI5351_DRIVE_2MA>;
 				};
 
 				/* BCLK DAC/L */
 				clkout2 {
 					reg = <2>;
-					silabs,disable-state = <2>;
-					silabs,clock-source = <0>;
-					silabs,multisynth-source = <1>;
-					silabs,drive-strength = <2>;
+					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
+					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
+					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
+					silabs,drive-strength = <SI5351_DRIVE_2MA>;
 				};
 
 				/* LRCLK DAC/L */
 				clkout3 {
 					reg = <3>;
-					silabs,disable-state = <2>;
-					silabs,clock-source = <0>;
-					silabs,multisynth-source = <1>;
-					silabs,drive-strength = <2>;
+					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
+					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
+					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
+					silabs,drive-strength = <SI5351_DRIVE_2MA>;
 				};
 
 				/* BCLK DAC/R */
 				clkout4 {
 					reg = <4>;
-					silabs,disable-state = <2>;
-					silabs,clock-source = <0>;
-					silabs,multisynth-source = <1>;
-					silabs,drive-strength = <2>;
+					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
+					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
+					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
+					silabs,drive-strength = <SI5351_DRIVE_2MA>;
 				};
 
 				/* LRCLK DAC/R */
 				clkout5 {
 					reg = <5>;
-					silabs,disable-state = <2>;
-					silabs,clock-source = <0>;
-					silabs,multisynth-source = <1>;
-					silabs,drive-strength = <2>;
+					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
+					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
+					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
+					silabs,drive-strength = <SI5351_DRIVE_2MA>;
 				};
 
 				/* not used */
 				clkout6 {
 					reg = <6>;
-					silabs,disable-state = <0>;
+					silabs,disable-state = <SI5351_DISABLE_LOW>;
+					silabs,clock-source = <SI5351_CLKOUT_SRC_XTAL>;
+					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOA>;
 				};
 
 				/* not used */
 				clkout7 {
 					reg = <7>;
-					silabs,disable-state = <0>;
+					silabs,disable-state = <SI5351_DISABLE_LOW>;
+					silabs,clock-source = <SI5351_CLKOUT_SRC_XTAL>;
+					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOA>;
 				};
 			};
 		};
