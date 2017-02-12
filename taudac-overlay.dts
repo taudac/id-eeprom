@@ -71,7 +71,7 @@
 				#sound-dai-cells = <0>;
 				compatible = "wlf,wm8741";
 				reg = <0x1a>;
-				diff-mode = <1>;
+				diff-mode = <WM8741_DIFF_MODE_MONO_LEFT>;
 				status = "okay";
 			};
 
@@ -79,7 +79,7 @@
 				#sound-dai-cells = <0>;
 				compatible = "wlf,wm8741";
 				reg = <0x1b>;
-				diff-mode = <3>;
+				diff-mode = <WM8741_DIFF_MODE_MONO_RIGHT>;
 				status = "okay";
 			};
 
