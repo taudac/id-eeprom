@@ -94,6 +94,7 @@
 				silabs,pll-source = <0 0>, <1 1>;
 				status = "okay";
 
+				/* BCLK CPU */
 				clkout0 {
 					reg = <0>;
 					silabs,disable-state = <2>;
@@ -102,16 +103,25 @@
 					silabs,drive-strength = <2>;
 				};
 
+				/* LRCLK CPU */
 				clkout1 {
 					reg = <1>;
-					silabs,disable-state = <0>;
+					silabs,disable-state = <2>;
+					silabs,clock-source = <0>;
+					silabs,multisynth-source = <1>;
+					silabs,drive-strength = <2>;
 				};
 
+				/* BCLK DAC/L */
 				clkout2 {
 					reg = <2>;
-					silabs,disable-state = <0>;
+					silabs,disable-state = <2>;
+					silabs,clock-source = <0>;
+					silabs,multisynth-source = <1>;
+					silabs,drive-strength = <2>;
 				};
 
+				/* LRCLK DAC/L */
 				clkout3 {
 					reg = <3>;
 					silabs,disable-state = <2>;
@@ -120,11 +130,16 @@
 					silabs,drive-strength = <2>;
 				};
 
+				/* BCLK DAC/R */
 				clkout4 {
 					reg = <4>;
-					silabs,disable-state = <0>;
+					silabs,disable-state = <2>;
+					silabs,clock-source = <0>;
+					silabs,multisynth-source = <1>;
+					silabs,drive-strength = <2>;
 				};
 
+				/* LRCLK DAC/R */
 				clkout5 {
 					reg = <5>;
 					silabs,disable-state = <2>;
@@ -133,11 +148,13 @@
 					silabs,drive-strength = <2>;
 				};
 
+				/* not used */
 				clkout6 {
 					reg = <6>;
 					silabs,disable-state = <0>;
 				};
 
+				/* not used */
 				clkout7 {
 					reg = <7>;
 					silabs,disable-state = <0>;
@@ -156,11 +173,15 @@
 
 			clocks = <&osc24>, <&osc22>,
 			         <&mux_mclk>, <&gate_mclk>,
-			         <&si5351 5>, <&si5351 3>, <&si5351 0>;
+			         <&si5351 0>, <&si5351 1>,
+				 <&si5351 2>, <&si5351 3>,
+				 <&si5351 4>, <&si5351 5>;
 
 			clock-names = "mclk-24M", "mclk-22M",
-			         "mux-mclk", "gate-mclk",
-			         "bclk-dacr", "bclk-dacl", "bclk-cpu";
+			              "mux-mclk",  "gate-mclk",
+			              "bclk-cpu",  "lrclk-cpu",
+			              "bclk-dacl", "lrclk-dacl",
+			              "bclk-dacr", "lrclk-dacr";
 
 			status = "okay";
 		};
