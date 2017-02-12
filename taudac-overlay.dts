@@ -1,4 +1,8 @@
-// Definitions for TauDAC
+/*
+ * Device tree overlay for TauDAC-DM101
+ *
+ * Author: Sergej Sawazki <sergej@taudac.com>
+ */
 /dts-v1/;
 /plugin/;
 
