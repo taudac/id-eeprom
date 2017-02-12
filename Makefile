@@ -1,4 +1,5 @@
 DTC=/lib/modules/$(shell uname -r)/build/scripts/dtc/dtc
+CC=gcc
 EEPMAKE=hats/eepromutils/eepmake
 EEPFLASH=hats/eepromutils/eepflash.sh
 
@@ -9,7 +10,8 @@ blank.eep:
 
 taudac.dtbo: taudac-overlay.dts
 	@echo "Building DT overlay..."
-	$(DTC) -@ -H epapr -I dts -O dtb -o taudac.dtbo taudac-overlay.dts
+	$(CC) -E -P -I . -x assembler-with-cpp taudac-overlay.dts -o taudac-overlay.dts.i
+	$(DTC) -@ -H epapr -I dts -O dtb -o taudac.dtbo taudac-overlay.dts.i
 
 taudac.eep: taudac-eeprom.txt taudac.dtbo
 	@echo "Building EEPROM image..."
@@ -37,6 +39,7 @@ do-flash: taudac.eep
 	$(EEPFLASH) --write --file=taudac.eep --type=24c32
 
 clean:
+	rm -f *.dts.i
 	rm -f *.dtbo
 	rm -f *.eep
 
