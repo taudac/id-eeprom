@@ -5,7 +5,10 @@
  */
 /dts-v1/;
 /plugin/;
+
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/sound/wm8741.h>
+#include <dt-bindings/clock/si5351.h>
 
 / {
 	compatible = "brcm,bcm2708";
