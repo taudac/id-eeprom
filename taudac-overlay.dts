@@ -5,6 +5,7 @@
  */
 /dts-v1/;
 /plugin/;
+#include <dt-bindings/gpio/gpio.h>
 
 / {
 	compatible = "brcm,bcm2708";
@@ -47,14 +48,14 @@
 				compatible = "gpio-mux-clock";
 				clocks = <&osc24>, <&osc22>;
 				#clock-cells = <0>;
-				select-gpios = <&gpio 22 0>;
+				select-gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
 			};
 
 			gate_mclk: tau_gate_mclk {
 				compatible = "gpio-gate-clock";
 				clocks = <&mux_mclk>;
 				#clock-cells = <0>;
-				enable-gpios = <&gpio 27 0>;
+				enable-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
 			};
 		};
 	};
