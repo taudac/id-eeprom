@@ -6,7 +6,7 @@ EEPFLASH=hats/eepromutils/eepflash.sh
 all: taudac.eep
 
 blank.eep:
-	dd if=/dev/zero ibs=1k count=4 of=blank.eep
+	dd if=/dev/zero ibs=1k count=8 of=blank.eep
 
 taudac.dtbo: taudac-overlay.dts
 	@echo "Building DT overlay..."
@@ -32,11 +32,11 @@ erase flash: %: eeprom.unlocked do-%
 
 do-erase: blank.eep
 	@echo "Erasing EEPROM..."
-	$(EEPFLASH) --write --file=blank.eep --type=24c32
+	$(EEPFLASH) --write --file=blank.eep --type=24c64
 
 do-flash: taudac.eep
 	@echo "Programming EEPROM..."
-	$(EEPFLASH) --write --file=taudac.eep --type=24c32
+	$(EEPFLASH) --write --file=taudac.eep --type=24c64
 
 clean:
 	rm -f *.dts.i
