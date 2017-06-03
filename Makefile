@@ -42,4 +42,5 @@ clean:
 	rm -f *.dts.i
 	rm -f *.dtbo
 	rm -f *.eep
+	rm -f eeprom.unlocked
 
