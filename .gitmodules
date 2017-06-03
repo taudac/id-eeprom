@@ -1,4 +1,4 @@
 [submodule "hats"]
 	path = hats
-	url = git@github.com:raspberrypi/hats.git
+	url = https://github.com/raspberrypi/hats.git
 	ignore = untracked
