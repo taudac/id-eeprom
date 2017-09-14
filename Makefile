@@ -3,6 +3,28 @@ CC=gcc
 EEPMAKE=hats/eepromutils/eepmake
 EEPFLASH=hats/eepromutils/eepflash.sh
 
+export RELEASEDIR ?= ../modules
+
+GITHASH := $(shell git rev-parse HEAD)
+GITTAG  := $(shell git describe --tags)
+
+cred = '\033[1;31m'
+cgrn = '\033[1;32m'
+cylw = '\033[1;33m'
+cend = '\033[0m'
+
+define ok
+	echo $(cgrn)$(1)$(cend)
+endef
+
+define warn
+	echo $(cylw)$(1)$(cend)
+endef
+
+define die
+	(echo $(cred)$(1)$(cend); exit 1)
+endef
+
 all: taudac.eep
 
 blank.eep:
@@ -37,6 +59,12 @@ do-erase: blank.eep
 do-flash: taudac.eep
 	@echo "Programming EEPROM..."
 	$(EEPFLASH) --write --file=taudac.eep --type=24c64
+
+release: taudac.dtbo
+	@git describe --exact-match HEAD > /dev/null || \
+		$(call warn,"HEAD is not tagged!")
+	@install -m 644 -vD -t $(RELEASEDIR)/boot/overlays taudac.dtbo
+	@echo $(GITHASH) > $(RELEASEDIR)/taudac.dtbo.hash
 
 clean:
 	rm -f *.dts.i
