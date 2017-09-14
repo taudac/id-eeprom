@@ -31,16 +31,16 @@ blank.eep:
 	dd if=/dev/zero ibs=1k count=8 of=blank.eep
 
 taudac.dtbo: taudac-overlay.dts
-	@echo "Building DT overlay..."
+	@$(call ok,"Building DT overlay...")
 	$(CC) -E -P -I . -x assembler-with-cpp taudac-overlay.dts -o taudac-overlay.dts.i
 	$(DTC) -@ -H epapr -I dts -O dtb -o taudac.dtbo taudac-overlay.dts.i
 
 taudac.eep: taudac-eeprom.txt taudac.dtbo
-	@echo "Building EEPROM image..."
+	@$(call ok,"Building EEPROM image...")
 	$(EEPMAKE) taudac-eeprom.txt taudac.eep taudac.dtbo
 
 eeprom.unlocked:
-	@echo "Unlocking EEPROM..."
+	@$(call ok,"Unlocking EEPROM...")
 	echo '25' > /sys/class/gpio/export
 	@sleep 0.1
 	echo 'out' > /sys/class/gpio/gpio25/direction
@@ -48,16 +48,16 @@ eeprom.unlocked:
 	@date > eeprom.unlocked
 
 erase flash: %: eeprom.unlocked do-%
-	@echo "Locking EEPROM..."
+	@$(call ok,"Locking EEPROM...")
 	echo '25' > /sys/class/gpio/unexport
 	@rm eeprom.unlocked
 
 do-erase: blank.eep
-	@echo "Erasing EEPROM..."
+	@$(call warn,"Erasing EEPROM...")
 	$(EEPFLASH) --write --file=blank.eep --type=24c64
 
 do-flash: taudac.eep
-	@echo "Programming EEPROM..."
+	@$(call warn,"Programming EEPROM...")
 	$(EEPFLASH) --write --file=taudac.eep --type=24c64
 
 release: taudac.dtbo
