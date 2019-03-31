@@ -1,4 +1,4 @@
-DTC=/lib/modules/$(shell uname -r)/build/scripts/dtc/dtc
+DTC=dtc
 CC=gcc
 EEPMAKE=hats/eepromutils/eepmake
 EEPFLASH=hats/eepromutils/eepflash.sh
