@@ -25,6 +25,8 @@ define die
 	(echo $(cred)$(1)$(cend); exit 1)
 endef
 
+.PHONY: clean taudac-info.txt
+
 all: taudac.eep
 
 taudac-info.txt:
