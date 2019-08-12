@@ -27,6 +27,9 @@ endef
 
 all: taudac.eep
 
+taudac-info.txt:
+	git describe --dirty > taudac-info.txt
+
 blank.eep:
 	dd if=/dev/zero ibs=1k count=8 of=blank.eep
 
@@ -35,9 +38,9 @@ taudac.dtbo: taudac-overlay.dts
 	$(CC) -E -P -I . -x assembler-with-cpp taudac-overlay.dts -o taudac-overlay.dts.i
 	$(DTC) -@ -H epapr -I dts -O dtb -o taudac.dtbo taudac-overlay.dts.i
 
-taudac.eep: taudac-eeprom.txt taudac.dtbo
+taudac.eep: taudac-eeprom.txt taudac.dtbo taudac-info.txt
 	@$(call ok,"Building EEPROM image...")
-	$(EEPMAKE) taudac-eeprom.txt taudac.eep taudac.dtbo
+	$(EEPMAKE) taudac-eeprom.txt taudac.eep taudac.dtbo -c taudac-info.txt
 
 eeprom.unlocked:
 	@$(call ok,"Unlocking EEPROM...")
@@ -71,4 +74,5 @@ clean:
 	rm -f *.dtbo
 	rm -f *.eep
 	rm -f eeprom.unlocked
+	rm -f taudac-info.txt
 
