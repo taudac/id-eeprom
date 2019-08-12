@@ -70,9 +70,5 @@ release: taudac.dtbo
 	@echo $(GITHASH) > $(RELEASEDIR)/taudac.dtbo.hash
 
 clean:
-	rm -f *.dts.i
-	rm -f *.dtbo
-	rm -f *.eep
-	rm -f eeprom.unlocked
-	rm -f taudac-info.txt
+	@git clean -fX
 
