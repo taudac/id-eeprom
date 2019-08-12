@@ -183,8 +183,8 @@
 			clocks = <&osc24>, <&osc22>,
 			         <&mux_mclk>, <&gate_mclk>,
 			         <&si5351 0>, <&si5351 1>,
-				 <&si5351 2>, <&si5351 3>,
-				 <&si5351 4>, <&si5351 5>;
+			         <&si5351 2>, <&si5351 3>,
+			         <&si5351 4>, <&si5351 5>;
 
 			clock-names = "mclk-24M", "mclk-22M",
 			              "mux-mclk",  "gate-mclk",
