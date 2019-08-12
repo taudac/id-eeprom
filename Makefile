@@ -28,7 +28,8 @@ endef
 all: taudac.eep
 
 taudac-info.txt:
-	git describe --dirty > taudac-info.txt
+	git describe --dirty > $@
+	date >> $@
 
 blank.eep:
 	dd if=/dev/zero ibs=1k count=8 of=blank.eep
