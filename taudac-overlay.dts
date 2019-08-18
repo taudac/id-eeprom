@@ -105,6 +105,8 @@
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
 					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
 					silabs,drive-strength = <SI5351_DRIVE_2MA>;
+					silabs,phase-offset = <0>;
+					silabs,sync-mode = <1>;
 				};
 
 				/* LRCLK CPU */
@@ -114,6 +116,8 @@
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
 					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
 					silabs,drive-strength = <SI5351_DRIVE_2MA>;
+					silabs,sync-mode = <1>;
+					silabs,phase-offset = <0>;
 				};
 
 				/* BCLK DAC/L */
@@ -123,6 +127,8 @@
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
 					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
 					silabs,drive-strength = <SI5351_DRIVE_2MA>;
+					silabs,sync-mode = <1>;
+					silabs,phase-offset = <0>;
 				};
 
 				/* LRCLK DAC/L */
@@ -132,6 +138,8 @@
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
 					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
 					silabs,drive-strength = <SI5351_DRIVE_2MA>;
+					silabs,sync-mode = <1>;
+					silabs,phase-offset = <0>;
 				};
 
 				/* BCLK DAC/R */
@@ -141,6 +149,8 @@
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
 					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
 					silabs,drive-strength = <SI5351_DRIVE_2MA>;
+					silabs,sync-mode = <1>;
+					silabs,phase-offset = <0>;
 				};
 
 				/* LRCLK DAC/R */
@@ -150,7 +160,8 @@
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
 					silabs,multisynth-source = <SI5351_MULTISYNTH_SRC_VCOB>;
 					silabs,drive-strength = <SI5351_DRIVE_2MA>;
-					silabs,pll-reset;
+					silabs,sync-mode = <2>;
+					silabs,phase-offset = <0>;
 				};
 
 				/* not used */
