@@ -11,7 +11,8 @@
 #include <dt-bindings/clock/si5351.h>
 
 / {
-	compatible = "brcm,bcm2708";
+	/* base architecture for the Raspberry Pi SoCs */
+	compatible = "brcm,bcm2835";
 
 	fragment@0 {
 		target = <&gpio>;
