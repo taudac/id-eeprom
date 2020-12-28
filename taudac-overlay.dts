@@ -106,7 +106,7 @@
 				status = "okay";
 
 				/* BCLK CPU */
-				clkout0 {
+				clkout@0 {
 					reg = <0>;
 					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
@@ -115,7 +115,7 @@
 				};
 
 				/* LRCLK CPU */
-				clkout1 {
+				clkout@1 {
 					reg = <1>;
 					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
@@ -124,7 +124,7 @@
 				};
 
 				/* BCLK DAC/L */
-				clkout2 {
+				clkout@2 {
 					reg = <2>;
 					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
@@ -133,7 +133,7 @@
 				};
 
 				/* LRCLK DAC/L */
-				clkout3 {
+				clkout@3 {
 					reg = <3>;
 					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
@@ -142,7 +142,7 @@
 				};
 
 				/* BCLK DAC/R */
-				clkout4 {
+				clkout@4 {
 					reg = <4>;
 					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
@@ -151,7 +151,7 @@
 				};
 
 				/* LRCLK DAC/R */
-				clkout5 {
+				clkout@5 {
 					reg = <5>;
 					silabs,disable-state = <SI5351_DISABLE_FLOATING>;
 					silabs,clock-source = <SI5351_CLKOUT_SRC_MSYNTH_N>;
@@ -161,7 +161,7 @@
 				};
 
 				/* not used */
-				clkout6 {
+				clkout@6 {
 					reg = <6>;
 					silabs,disable-state = <SI5351_DISABLE_LOW>;
 					silabs,clock-source = <SI5351_CLKOUT_SRC_XTAL>;
@@ -169,7 +169,7 @@
 				};
 
 				/* not used */
-				clkout7 {
+				clkout@7 {
 					reg = <7>;
 					silabs,disable-state = <SI5351_DISABLE_LOW>;
 					silabs,clock-source = <SI5351_CLKOUT_SRC_XTAL>;
