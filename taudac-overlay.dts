@@ -47,6 +47,12 @@
 				#clock-cells = <0>;
 				clock-frequency = <24576000>;
 			};
+		};
+	};
+
+	fragment@2 {
+		target-path = "/";
+		__overlay__ {
 
 			mux_mclk: tau_mux_mclk {
 				compatible = "gpio-mux-clock";
@@ -64,7 +70,7 @@
 		};
 	};
 
-	fragment@2 {
+	fragment@3 {
 		target = <&i2c1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -173,7 +179,7 @@
 		};
 	};
 
-	fragment@3 {
+	fragment@4 {
 		target = <&sound>;
 		__overlay__ {
 			compatible = "taudac,dm101";
@@ -197,7 +203,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target = <&i2s>;
 		__overlay__ {
 			status = "okay";
