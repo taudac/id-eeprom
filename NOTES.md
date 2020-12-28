@@ -6,9 +6,10 @@ Activate I2C-0 by adding the following line to `/boot/config.txt` and reboot.
 dtparam=i2c_vc=on
 ```
 
-Program the ID EEPROM:
+Run the following commands to build and flash the EEPROM image.
 
 ```
-make flash
+make
+sudo make flash
 ```
 
