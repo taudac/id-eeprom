@@ -27,7 +27,7 @@
 	};
 
 	fragment@1 {
-		target-path = "/clocks";
+		target-path = "/";
 		__overlay__ {
 
 			xtal: tau_xtal {
@@ -47,12 +47,6 @@
 				#clock-cells = <0>;
 				clock-frequency = <24576000>;
 			};
-		};
-	};
-
-	fragment@2 {
-		target-path = "/";
-		__overlay__ {
 
 			mux_mclk: tau_mux_mclk {
 				compatible = "gpio-mux-clock";
