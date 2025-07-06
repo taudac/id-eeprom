@@ -1,7 +1,8 @@
 DTC=dtc
 CC=gcc
-EEPMAKE=hats/eepromutils/eepmake
-EEPFLASH=hats/eepromutils/eepflash.sh
+EEPMAKE=utils/eeptools/eepmake
+EEPFLASH=utils/eeptools/eepflash.sh
+EEPDEVID=10
 
 export RELEASEDIR ?= ../modules
 
@@ -43,28 +44,28 @@ taudac.dtbo: taudac-overlay.dts
 
 taudac.eep: taudac-eeprom.txt taudac.dtbo taudac-info.txt
 	@$(call ok,"Building EEPROM image...")
-	$(EEPMAKE) taudac-eeprom.txt taudac.eep taudac.dtbo -c taudac-info.txt
+	$(EEPMAKE) -v1 taudac-eeprom.txt taudac.eep taudac.dtbo -c taudac-info.txt
+
+/dev/i2c-${EEPDEVID}:
+	dtoverlay i2c-gpio i2c_gpio_sda=0 i2c_gpio_scl=1 bus=${EEPDEVID}
 
 eeprom.unlocked:
 	@$(call ok,"Unlocking EEPROM...")
-	echo '25' > /sys/class/gpio/export
-	@sleep 0.1
-	echo 'out' > /sys/class/gpio/gpio25/direction
-	echo '0' > /sys/class/gpio/gpio25/value
+	pinctrl set 25 op pn dl
 	@date > eeprom.unlocked
 
-erase flash: %: eeprom.unlocked do-%
+erase flash: %: eeprom.unlocked /dev/i2c-${EEPDEVID} do-%
 	@$(call ok,"Locking EEPROM...")
-	echo '25' > /sys/class/gpio/unexport
+	pinctrl set 25 ip pn
 	@rm eeprom.unlocked
 
 do-erase: blank.eep
 	@$(call warn,"Erasing EEPROM...")
-	$(EEPFLASH) --write --file=blank.eep --type=24c64
+	$(EEPFLASH) --write --file=blank.eep --type=24c64 --device=${EEPDEVID}
 
 do-flash: taudac.eep
 	@$(call warn,"Programming EEPROM...")
-	$(EEPFLASH) --write --file=taudac.eep --type=24c64
+	$(EEPFLASH) --write --file=taudac.eep --type=24c64 --device=${EEPDEVID}
 
 release: taudac.dtbo
 	@git describe --exact-match HEAD > /dev/null || \
@@ -74,4 +75,3 @@ release: taudac.dtbo
 
 clean:
 	@git clean -fX
-
